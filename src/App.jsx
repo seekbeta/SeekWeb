@@ -725,13 +725,16 @@ const App = () => {
 
       {/* HEADER */}
       <div className="max-w-7xl mx-auto mb-6 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-            SeekWeb
-          </h1>
-          <p className="text-slate-400 text-xs md:text-sm mt-1">
-            {view === 'dashboard' ? "Ranking and Analytics" : " Ranking and Analytics"}
+        <div className="flex items-center gap-4">
+          <img src="/peachh.svg" alt="Logo" className="w-12 h-12 object-contain" />
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+              SeekWeb
+            </h1>
+            <p className="text-slate-400 text-xs md:text-sm mt-1">
+              {view === 'dashboard' ? "Ranking and Analytics" : " Ranking and Analytics"}
           </p>
+          </div>
         </div>
 
         {/* TOP CONTROLS */}
