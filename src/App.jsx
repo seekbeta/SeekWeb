@@ -727,10 +727,10 @@ const App = () => {
       <div className="max-w-7xl mx-auto mb-6 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-            Actor Analytics
+            SeekWeb
           </h1>
           <p className="text-slate-400 text-xs md:text-sm mt-1">
-            {view === 'dashboard' ? "Interactive Usage vs. Attribute mapping" : "Official Rankings & Leaderboards"}
+            {view === 'dashboard' ? "Ranking and Analytics" : " Ranking and Analytics"}
           </p>
         </div>
 
