@@ -370,6 +370,16 @@ const App = () => {
     localStorage.setItem('actorAnalyticsData', JSON.stringify(data));
   }, [data]);
 
+  // Lock body scroll when overlay is open on mobile
+  useEffect(() => {
+    if (selectedActorId && window.innerWidth < 1024) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [selectedActorId]);
+
   const calculateAverage = (attributes) => {
     const values = Object.values(attributes);
     const sum = values.reduce((acc, curr) => acc + curr, 0);
@@ -402,9 +412,7 @@ const App = () => {
       ...actor,
       averageScore: calculateAverage(actor.attributes)
     })).sort((a, b) => {
-      // 1. Get Values based on metric
       let valA, valB;
-
       if (rankingMetric === 'Usage Rate') {
         valA = a.usageRate;
         valB = b.usageRate;
@@ -416,17 +424,8 @@ const App = () => {
         valB = b.attributes[rankingMetric] || 0;
       }
 
-      // 2. Primary Sort: Value (Descending)
-      if (valB !== valA) {
-        return valB - valA;
-      }
-
-      // 3. Tie-Breaker 1: Usage Rate (Descending)
-      if (b.usageRate !== a.usageRate) {
-        return b.usageRate - a.usageRate;
-      }
-
-      // 4. Tie-Breaker 2: Alphabetical (Ascending)
+      if (valB !== valA) return valB - valA;
+      if (b.usageRate !== a.usageRate) return b.usageRate - a.usageRate;
       return a.name.localeCompare(b.name);
     });
   }, [data, rankingMetric]);
@@ -513,7 +512,7 @@ const App = () => {
           usageRate: parseFloat(editForm.usageRate),
           attributes: {
             Personality: parseFloat(editForm.Personality),
-            Frame: parseFloat(editForm.Frame), // FIXED: Was editForm.Face
+            Frame: parseFloat(editForm.Frame), 
             Face: parseFloat(editForm.Face),
             Chest: parseFloat(editForm.Chest),
             Tummy: parseFloat(editForm.Tummy),
@@ -606,16 +605,13 @@ const App = () => {
     return null;
   };
 
+  // --- CUSTOMIZABLE COLORS (HEX CODES) ---
   const getRankColor = (index) => {
-    // Reverted to static class names so Tailwind can detect them
-    if (index === 0) return "border-[#e34bab]/50 bg-gradient-to-r from-[#e34bab]/10 to-transparent shadow-[#e34bab]/10"; // Rank 1 (Pink)
-    if (index === 1) return "border-[#ad589b]/50 bg-gradient-to-r from-[#ad589b]/10 to-transparent shadow-[#ad589b]/10"; // Rank 2 (Purple)
-    if (index === 2) return "border-[#88658c]/50 bg-gradient-to-r from-[#88658c]/10 to-transparent shadow-[#88658c]/10"; // Rank 3 (Blue)
-    
-    // Default style for Rank 4+
+    if (index === 0) return "border-[#e34bab]/50 bg-gradient-to-r from-[#e34bab]/10 to-transparent shadow-[#e34bab]/10"; 
+    if (index === 1) return "border-[#ad589b]/50 bg-gradient-to-r from-[#ad589b]/10 to-transparent shadow-[#ad589b]/10"; 
+    if (index === 2) return "border-[#88658c]/50 bg-gradient-to-r from-[#88658c]/10 to-transparent shadow-[#88658c]/10"; 
     return "border-slate-700/50 bg-slate-800/30 hover:bg-slate-800/50";
   };
-
 
   const getRankBadge = (index) => {
     if (index === 0) return <div className="text-xl font-bold text-[#e34bab]">#1</div>;
@@ -629,18 +625,20 @@ const App = () => {
     if (!selectedActor) return null; 
 
     return (
-      <div className="w-full lg:w-[400px] shrink-0 animate-slide-in-right">
-        {/* CHANGED: h-fit instead of h-full, added max-h constraint for scrolling */}
-        <div className="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl flex flex-col sticky top-6 relative h-fit max-h-[calc(100vh-3rem)] overflow-y-auto custom-scrollbar">
+      // Mobile: Fixed Overlay (z-50, inset-0). Desktop: Static layout (lg:static).
+      <div className="fixed inset-0 z-50 lg:static lg:z-auto w-full lg:w-[400px] shrink-0 animate-slide-in-right bg-slate-900/90 lg:bg-transparent flex justify-center items-end lg:block p-0 lg:p-0 backdrop-blur-sm lg:backdrop-blur-none">
+        
+        {/* Mobile: Bottom Sheet logic with max-h-[85vh]. Desktop: Fit content. */}
+        <div className="bg-slate-800 w-full lg:w-auto rounded-t-2xl lg:rounded-2xl p-6 border-t lg:border border-slate-700 shadow-2xl flex flex-col lg:sticky lg:top-6 relative h-[85vh] lg:h-fit lg:max-h-[calc(100vh-3rem)] overflow-y-auto custom-scrollbar">
           {!isEditing ? (
             <>
               {/* Close Button */}
               <button 
                 onClick={handleCloseDetails} 
-                className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+                className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors bg-slate-800/50 rounded-full p-1"
                 title="Close"
               >
-                <X size={20} />
+                <X size={24} />
               </button>
 
               <div className="flex flex-col items-center mb-6 mt-2">
@@ -668,17 +666,17 @@ const App = () => {
                 ))}
               </div>
               <div className="mt-8 flex gap-3">
-                <a href={selectedActor.profileUrl} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white py-2 rounded-lg transition-colors font-medium text-sm"><User size={16} /> Profile</a>
-                <button onClick={startEditing} className="flex-1 flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg transition-colors font-medium text-sm"><Edit2 size={16} /> Edit</button>
+                <a href={selectedActor.profileUrl} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white py-3 lg:py-2 rounded-lg transition-colors font-medium text-sm"><User size={16} /> Profile</a>
+                <button onClick={startEditing} className="flex-1 flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white py-3 lg:py-2 rounded-lg transition-colors font-medium text-sm"><Edit2 size={16} /> Edit</button>
               </div>
             </>
           ) : (
             <>
               <div className="flex justify-between items-center mb-6 pb-4 border-b border-slate-700">
                 <h3 className="text-xl font-bold text-white">Edit Profile</h3>
-                <button onClick={() => setIsEditing(false)} className="text-slate-400 hover:text-white"><X size={20} /></button>
+                <button onClick={() => setIsEditing(false)} className="text-slate-400 hover:text-white"><X size={24} /></button>
               </div>
-              <div className="space-y-4 overflow-y-auto pr-2 custom-scrollbar flex-grow">
+              <div className="space-y-4 overflow-y-auto pr-2 custom-scrollbar flex-grow pb-10">
                 <div className="space-y-3 p-3 bg-slate-900/50 rounded-lg border border-slate-700/50">
                     <div><label className="text-xs text-slate-400 block mb-1">Name</label><input type="text" value={editForm.name} onChange={(e) => handleFormChange('name', e.target.value)} className="w-full bg-slate-800 border border-slate-600 rounded p-2 text-white focus:border-purple-500 outline-none text-sm" /></div>
                     <div><label className="text-xs text-slate-400 block mb-1 flex items-center gap-1"><ImageIcon size={12} /> Image URL</label><input type="text" value={editForm.image} onChange={(e) => handleFormChange('image', e.target.value)} className="w-full bg-slate-800 border border-slate-600 rounded p-2 text-white focus:border-purple-500 outline-none text-xs font-mono text-slate-400" /></div>
@@ -694,17 +692,17 @@ const App = () => {
                 ))}
               </div>
               <div className="mt-6 pt-4 border-t border-slate-700 flex flex-col gap-3">
-                <button onClick={saveChanges} className="w-full flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition-colors font-bold shadow-lg shadow-green-900/20"><Save size={18} /> Save Changes</button>
+                <button onClick={saveChanges} className="w-full flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white py-3 lg:py-2 rounded-lg transition-colors font-bold shadow-lg shadow-green-900/20"><Save size={18} /> Save Changes</button>
                 {showDeleteConfirm ? (
                     <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-3 flex flex-col gap-2">
                       <div className="flex items-center gap-2 text-red-200 text-sm font-medium"><AlertTriangle size={16} /> Are you sure?</div>
                       <div className="flex gap-2">
-                        <button onClick={deleteActor} className="flex-1 bg-red-600 hover:bg-red-700 text-white py-1 rounded text-sm font-bold transition-colors">Yes, Delete</button>
-                        <button onClick={() => setShowDeleteConfirm(false)} className="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-1 rounded text-sm font-medium transition-colors">Cancel</button>
+                        <button onClick={deleteActor} className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 rounded text-sm font-bold transition-colors">Yes, Delete</button>
+                        <button onClick={() => setShowDeleteConfirm(false)} className="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-2 rounded text-sm font-medium transition-colors">Cancel</button>
                       </div>
                     </div>
                 ) : (
-                  <button onClick={() => setShowDeleteConfirm(true)} className="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-red-900/30 hover:text-red-400 text-slate-400 py-2 rounded-lg transition-colors font-medium border border-slate-700 hover:border-red-900/50"><Trash2 size={16} /> Delete Actor</button>
+                  <button onClick={() => setShowDeleteConfirm(true)} className="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-red-900/30 hover:text-red-400 text-slate-400 py-3 lg:py-2 rounded-lg transition-colors font-medium border border-slate-700 hover:border-red-900/50"><Trash2 size={16} /> Delete Actor</button>
                 )}
               </div>
             </>
@@ -726,18 +724,18 @@ const App = () => {
       <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept=".json" />
 
       {/* HEADER */}
-      <div className="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="max-w-7xl mx-auto mb-6 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+          <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
             Actor Analytics
           </h1>
-          <p className="text-slate-400 text-sm mt-1">
+          <p className="text-slate-400 text-xs md:text-sm mt-1">
             {view === 'dashboard' ? "Interactive Usage vs. Attribute mapping" : "Official Rankings & Leaderboards"}
           </p>
         </div>
 
         {/* TOP CONTROLS */}
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
           
           {/* Toggle Switch */}
           <div className="flex items-center bg-slate-800 p-1 rounded-lg border border-slate-700">
@@ -767,7 +765,7 @@ const App = () => {
             </button>
           </div>
           
-          <button onClick={addNewActor} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-3 py-2 rounded-lg shadow-lg shadow-blue-900/20 transition-all font-medium text-sm">
+          <button onClick={addNewActor} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-3 py-2 rounded-lg shadow-lg shadow-blue-900/20 transition-all font-medium text-sm ml-auto lg:ml-0">
             <Plus size={18} /> <span className="hidden sm:inline">Add</span>
           </button>
           
@@ -787,14 +785,14 @@ const App = () => {
           {view === 'dashboard' ? (
             <div key="dashboard" className="flex flex-col gap-6 animate-fade-in">
               <div className="flex justify-end mb-2">
-                  <div className="flex items-center gap-4 bg-slate-800 p-2 rounded-lg shadow-lg border border-slate-700">
-                    <label className="text-sm font-medium text-slate-300 flex items-center gap-2 px-2">
+                  <div className="flex items-center gap-4 bg-slate-800 p-2 rounded-lg shadow-lg border border-slate-700 w-full lg:w-auto">
+                    <label className="text-sm font-medium text-slate-300 flex items-center gap-2 px-2 whitespace-nowrap">
                       <BarChart2 size={16} /> <span className="hidden sm:inline">Y-Axis:</span>
                     </label>
                     <select 
                       value={yAxisMetric} 
                       onChange={(e) => setYAxisMetric(e.target.value)} 
-                      className="bg-slate-700 text-white border-none rounded px-3 py-1 outline-none cursor-pointer hover:bg-slate-600 transition text-sm"
+                      className="bg-slate-700 text-white border-none rounded px-3 py-1 outline-none cursor-pointer hover:bg-slate-600 transition text-sm w-full"
                     >
                       <option value="Average">Average Score</option>
                       {ATTRIBUTE_KEYS.map(key => <option key={key} value={key}>{key}</option>)}
@@ -802,12 +800,13 @@ const App = () => {
                   </div>
               </div>
 
-              <div className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700/50 shadow-xl backdrop-blur-sm h-[500px] flex flex-col relative transition-all duration-300">
+              <div className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700/50 shadow-xl backdrop-blur-sm h-[350px] lg:h-[500px] flex flex-col relative transition-all duration-300">
+
                 <ResponsiveContainer width="100%" height="100%">
-                  <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
+                  <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#334155" opacity={0.5} />
-                    <XAxis type="number" dataKey="x" name="Usage Rate" unit="%" stroke="#94a3b8" tick={{fill: '#94a3b8'}} domain={['dataMin - 5', 'dataMax + 5']} />
-                    <YAxis type="number" dataKey="y" name={yAxisMetric} stroke="#94a3b8" tick={{fill: '#94a3b8'}} domain={['auto', 'auto']} />
+                    <XAxis type="number" dataKey="x" name="Usage Rate" unit="%" stroke="#94a3b8" tick={{fill: '#94a3b8', fontSize: 12}} domain={['dataMin - 5', 'dataMax + 5']} />
+                    <YAxis type="number" dataKey="y" name={yAxisMetric} stroke="#94a3b8" tick={{fill: '#94a3b8', fontSize: 12}} domain={['auto', 'auto']} width={30} />
                     <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: '3 3', stroke: '#cbd5e1' }} />
                     <ZAxis range={[60, 400]} />
                     <Scatter name="Actors" data={chartData} onClick={handlePointClick} className="cursor-pointer">
@@ -820,7 +819,7 @@ const App = () => {
           ) : (
             <div key="ranking" className="animate-fade-in">
               {/* Rank Controls */}
-              <div className="flex items-center justify-between mb-6 bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-xl">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6 bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-xl gap-4 lg:gap-0">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-purple-500/20 rounded-lg text-purple-400"><TrendingUp size={24} /></div>
                   <div>
@@ -829,12 +828,12 @@ const App = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3">
-                  <label className="text-sm font-medium text-slate-300">Rank By:</label>
+                <div className="flex items-center gap-3 w-full lg:w-auto">
+                  <label className="text-sm font-medium text-slate-300 whitespace-nowrap">Rank By:</label>
                   <select 
                     value={rankingMetric}
                     onChange={(e) => setRankingMetric(e.target.value)}
-                    className="bg-slate-700 text-white border border-slate-600 rounded-lg px-4 py-2 outline-none focus:border-purple-500 cursor-pointer"
+                    className="bg-slate-700 text-white border border-slate-600 rounded-lg px-4 py-2 outline-none focus:border-purple-500 cursor-pointer w-full"
                   >
                     {RANKING_OPTIONS.map(opt => <option key={opt} value={opt}>{opt}</option>)}
                   </select>
@@ -842,7 +841,7 @@ const App = () => {
               </div>
 
               {/* Ranking List */}
-              <div className="space-y-4">
+              <div className="space-y-4 pb-20 lg:pb-0">
                 {sortedRankingData.map((actor, index) => {
                   let displayValue = 0;
                   if (rankingMetric === 'Usage Rate') displayValue = `${actor.usageRate}%`;
@@ -853,26 +852,25 @@ const App = () => {
                     <div 
                       key={actor.id} 
                       onClick={() => handlePointClick(actor)}
-                      // CHANGED: added duration-500 to match container
-                      className={`flex items-center gap-4 p-4 rounded-xl border shadow-lg transition-all duration-500 cursor-pointer hover:scale-[1.01] ${getRankColor(index)} ${selectedActorId === actor.id ? 'ring-2 ring-white shadow-[0_0_15px_rgba(255,255,255,0.3)]' : ''}`}
+                      className={`flex items-center gap-3 lg:gap-4 p-3 lg:p-4 rounded-xl border shadow-lg transition-all duration-500 cursor-pointer hover:scale-[1.01] ${getRankColor(index)} ${selectedActorId === actor.id ? 'ring-2 ring-white shadow-[0_0_15px_rgba(255,255,255,0.3)]' : ''}`}
                     >
-                      <div className="w-24 text-center shrink-0">
+                      <div className="w-12 lg:w-24 text-center shrink-0">
                         {getRankBadge(index)}
                       </div>
-                      <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-slate-600 shrink-0">
+                      <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-full overflow-hidden border-2 border-slate-600 shrink-0">
                         <img src={actor.image} alt={actor.name} className="w-full h-full object-cover" />
                       </div>
-                      <div className="flex-grow">
-                        <h3 className="text-lg font-bold text-white">{actor.name}</h3>
+                      <div className="flex-grow min-w-0">
+                        <h3 className="text-base lg:text-lg font-bold text-white truncate">{actor.name}</h3>
                         <div className="flex items-center gap-3 mt-1 text-xs text-slate-400">
-                            <span className="flex items-center gap-1 bg-slate-800/50 px-2 py-0.5 rounded">
-                              <Activity size={12} /> Usage: {actor.usageRate}%
+                            <span className="flex items-center gap-1 bg-slate-800/50 px-2 py-0.5 rounded whitespace-nowrap">
+                              <Activity size={12} /> <span className="hidden lg:inline">Usage:</span> {actor.usageRate}%
                             </span>
                         </div>
                       </div>
-                      <div className="text-right shrink-0 px-4">
-                          <div className="text-xs text-slate-400 uppercase tracking-wider mb-1">{rankingMetric}</div>
-                          <div className="text-2xl font-bold text-white font-mono">{displayValue}</div>
+                      <div className="text-right shrink-0 px-2 lg:px-4">
+                          <div className="text-[10px] lg:text-xs text-slate-400 uppercase tracking-wider mb-1">{rankingMetric}</div>
+                          <div className="text-xl lg:text-2xl font-bold text-white font-mono">{displayValue}</div>
                       </div>
                     </div>
                   );
