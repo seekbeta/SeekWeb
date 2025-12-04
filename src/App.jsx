@@ -333,6 +333,36 @@ const initialActorData = [
       "Tummy": 8.9,
       "Bottom": 8.8
     }
+  },
+  {
+    "id": 23,
+    "name": "Lily Larimar",
+    "usageRate": 60,
+    "image": "https://media.themoviedb.org/t/p/w235_and_h235_face/lK9K3SuqoaPc6C4eMRsUaO7zUP5.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/lily-larimar/",
+    "attributes": {
+      "Personality": 9,
+      "Frame": 8.7,
+      "Face": 7.9,
+      "Chest": 8.7,
+      "Tummy": 8.8,
+      "Bottom": 8.4
+    }
+  },
+  {
+    "id": 24,
+    "name": "Ivy Wolfe",
+    "usageRate": 67,
+    "image": "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE3/63ee7e9f6c94b53c0f599e87/IMAGE_3_2_XL.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/ivy-wolfe/",
+    "attributes": {
+      "Personality": 10,
+      "Frame": 8.8,
+      "Face": 9,
+      "Chest": 8.6,
+      "Tummy": 8.9,
+      "Bottom": 8.7
+    }
   }
 ];
 
