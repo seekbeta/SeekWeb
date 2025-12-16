@@ -1,0 +1,7 @@
+Local:
+npm run dev
+
+Deploy:
+git add .
+git commit -m "Catalog Update"
+git push

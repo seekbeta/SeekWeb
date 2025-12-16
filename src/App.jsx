@@ -363,6 +363,156 @@ const initialActorData = [
       "Tummy": 8.9,
       "Bottom": 8.7
     }
+  },
+  {
+    "id": 25,
+    "name": "Riley Star",
+    "usageRate": 59,
+    "image": "https://image.tmdb.org/t/p/original/ssSNYzKeRGEQekjPNlipAf4sZ37.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/riley-star/",
+    "attributes": {
+      "Personality": 8.8,
+      "Frame": 8.5,
+      "Face": 8.7,
+      "Chest": 7.5,
+      "Tummy": 8,
+      "Bottom": 9.1
+    }
+  },
+  {
+    "id": 26,
+    "name": "Dani Lynn",
+    "usageRate": 47,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvr70BmUbk7v2CC1f6cqGX7WVG4Qor5Iqoxg&s",
+    "profileUrl": "https://hqporner.com/?q=dani+lynn",
+    "attributes": {
+      "Personality": 8.4,
+      "Frame": 8.8,
+      "Face": 8.9,
+      "Chest": 9.2,
+      "Tummy": 9.2,
+      "Bottom": 8.1
+    }
+  },
+  {
+    "id": 27,
+    "name": "Catalina Ossa",
+    "usageRate": 49,
+    "image": "https://media.themoviedb.org/t/p/w235_and_h235_face/2JaqG41khSU1fA8Zc2l2U3DLntp.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/catalina-ossa/",
+    "attributes": {
+      "Personality": 8.6,
+      "Frame": 9.4,
+      "Face": 7,
+      "Chest": 8.9,
+      "Tummy": 8.7,
+      "Bottom": 9.2
+    }
+  },
+  {
+    "id": 28,
+    "name": "Willow Ryder",
+    "usageRate": 50,
+    "image": "https://i.pinimg.com/474x/83/41/fc/8341fc2eccad621d49b9db6bdd63486a.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/willow-ryder/",
+    "attributes": {
+      "Personality": 9,
+      "Frame": 9.5,
+      "Face": 8,
+      "Chest": 8.4,
+      "Tummy": 7.8,
+      "Bottom": 9.7
+    }
+  },
+  {
+    "id": 29,
+    "name": "Jasmine Grey",
+    "usageRate": 58,
+    "image": "https://media.themoviedb.org/t/p/w235_and_h235_face/vfnaFQdCqruipzCUQIuNEDTn5Xl.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/jasmine-grey/",
+    "attributes": {
+      "Personality": 8.1,
+      "Frame": 8.6,
+      "Face": 8.7,
+      "Chest": 8.9,
+      "Tummy": 8.8,
+      "Bottom": 7.8
+    }
+  },
+  {
+    "id": 30,
+    "name": "Emma Bugg",
+    "usageRate": 57,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLU2rEshQWOo2J3WqOdGVYgBq6KN_OU6DxCQ&s",
+    "profileUrl": "https://www.whoreshub.com/search/Emma-Bugg/",
+    "attributes": {
+      "Personality": 8.9,
+      "Frame": 9.1,
+      "Face": 8.5,
+      "Chest": 8.5,
+      "Tummy": 9.3,
+      "Bottom": 9.6
+    }
+  },
+  {
+    "id": 31,
+    "name": "Val Steele",
+    "usageRate": 45,
+    "image": "https://media.themoviedb.org/t/p/w235_and_h235_face/96GeKvuvdLlOqXKNI7iSOWLUlRg.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/valerica-steele/",
+    "attributes": {
+      "Personality": 9.1,
+      "Frame": 8.8,
+      "Face": 8.3,
+      "Chest": 8.6,
+      "Tummy": 8.3,
+      "Bottom": 9.4
+    }
+  },
+  {
+    "id": 32,
+    "name": "Kimmy Granger",
+    "usageRate": 35,
+    "image": "https://images.bursadabugun.com/galeriler/2022/10/13/88465-film-yildizi-kimmy-granger-babam-menajerim-oldu-634800b647bc4.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/kimmy-granger/",
+    "attributes": {
+      "Personality": 9,
+      "Frame": 8.6,
+      "Face": 8.9,
+      "Chest": 8.8,
+      "Tummy": 8.6,
+      "Bottom": 8.1
+    }
+  },
+  {
+    "id": 33,
+    "name": "Kiara Cole",
+    "usageRate": 40,
+    "image": "data:image/jpeg;base64,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",
+    "profileUrl": "https://www.whoreshub.com/models/kiara-cole/",
+    "attributes": {
+      "Personality": 8.6,
+      "Frame": 8.7,
+      "Face": 8.5,
+      "Chest": 8.4,
+      "Tummy": 8.8,
+      "Bottom": 8.3
+    }
+  },
+  {
+    "id": 34,
+    "name": "Xxlayna Marie",
+    "usageRate": 51,
+    "image": "https://cdni.pornpics.com/models/x/xxlayna_marie.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/xxlayna-marie/",
+    "attributes": {
+      "Personality": 8.8,
+      "Frame": 8.6,
+      "Face": 8.5,
+      "Chest": 9.3,
+      "Tummy": 8.4,
+      "Bottom": 8.2
+    }
   }
 ];
 
