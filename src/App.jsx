@@ -513,6 +513,186 @@ const initialActorData = [
       "Tummy": 8.4,
       "Bottom": 8.2
     }
+  },
+  {
+    "id": 35,
+    "name": "Kali Roses",
+    "usageRate": 64,
+    "image": "https://media.themoviedb.org/t/p/w235_and_h235_face/afHGVA3n3ROMRnN5fBOBRWkq3hi.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/kali-roses/",
+    "attributes": {
+      "Personality": 9,
+      "Frame": 8.8,
+      "Face": 8.3,
+      "Chest": 9.6,
+      "Tummy": 8.1,
+      "Bottom": 8.6
+    }
+  },
+  {
+    "id": 36,
+    "name": "Veronica Rodriguez",
+    "usageRate": 65,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJITOzag7Peob9x6F0RcZkGQRi6r3WaN0m_A&s",
+    "profileUrl": "https://www.whoreshub.com/models/veronica-rodriguez/",
+    "attributes": {
+      "Personality": 9.2,
+      "Frame": 9.6,
+      "Face": 8.6,
+      "Chest": 9.3,
+      "Tummy": 9,
+      "Bottom": 9.1
+    }
+  },
+  {
+    "id": 37,
+    "name": "Emma Hix",
+    "usageRate": 50,
+    "image": "https://www.cine.com/media/actores/emma-hix-876479_500.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/emma-hix/",
+    "attributes": {
+      "Personality": 8.7,
+      "Frame": 8.8,
+      "Face": 7.3,
+      "Chest": 8.6,
+      "Tummy": 8.9,
+      "Bottom": 8.3
+    }
+  },
+  {
+    "id": 38,
+    "name": "Alessa Savage",
+    "usageRate": 62,
+    "image": "https://media.themoviedb.org/t/p/w235_and_h235_face/6JaOBrcvVoN76ZXu1YObROx8FzD.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/alessa-savage/",
+    "attributes": {
+      "Personality": 9.1,
+      "Frame": 8.8,
+      "Face": 8.3,
+      "Chest": 8.3,
+      "Tummy": 8,
+      "Bottom": 8.5
+    }
+  },
+  {
+    "id": 39,
+    "name": "Jessie Andrews",
+    "usageRate": 30,
+    "image": "https://media.themoviedb.org/t/p/w235_and_h235_face/o0c6ikH8EE8UaYjNOAeyZdsFCmi.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/jessie-andrews/",
+    "attributes": {
+      "Personality": 9.2,
+      "Frame": 8.3,
+      "Face": 7.2,
+      "Chest": 8.8,
+      "Tummy": 9,
+      "Bottom": 8.2
+    }
+  },
+  {
+    "id": 40,
+    "name": "Kenzie Kai",
+    "usageRate": 33,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSom_wvl0RERUr_KpfdfJ8Uf2WTFjDQY-snBQ&s",
+    "profileUrl": "https://www.whoreshub.com/models/kenzie-kai/",
+    "attributes": {
+      "Personality": 8.1,
+      "Frame": 8.9,
+      "Face": 7.8,
+      "Chest": 8.5,
+      "Tummy": 9.2,
+      "Bottom": 8.5
+    }
+  },
+  {
+    "id": 41,
+    "name": "Chloe Temple",
+    "usageRate": 39,
+    "image": "https://media.themoviedb.org/t/p/w235_and_h235_face/pwHvSm5R8Pp0hXrQRCjObFVBzKN.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/chloe-temple/",
+    "attributes": {
+      "Personality": 8.8,
+      "Frame": 8.4,
+      "Face": 8.2,
+      "Chest": 8.7,
+      "Tummy": 7.9,
+      "Bottom": 9
+    }
+  },
+  {
+    "id": 42,
+    "name": "Vina Sky",
+    "usageRate": 52,
+    "image": "https://media.themoviedb.org/t/p/w235_and_h235_face/3RJk59LBB1tlhPUxBQoITpBiPqg.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/vina-sky/",
+    "attributes": {
+      "Personality": 8.2,
+      "Frame": 8.5,
+      "Face": 8.4,
+      "Chest": 8.6,
+      "Tummy": 8.7,
+      "Bottom": 8.4
+    }
+  },
+  {
+    "id": 43,
+    "name": "Chloe Foster",
+    "usageRate": 63,
+    "image": "https://pbs.twimg.com/profile_images/1021055464447135745/Q2r1QrbR.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/chloe-foster/",
+    "attributes": {
+      "Personality": 7.9,
+      "Frame": 8.4,
+      "Face": 8.1,
+      "Chest": 9.4,
+      "Tummy": 9.3,
+      "Bottom": 8
+    }
+  },
+  {
+    "id": 44,
+    "name": "Malena Morgan",
+    "usageRate": 44,
+    "image": "https://yaktribe.games/community/data/xfmg/thumbnail/119/119482-3bdf7b9d08e699534ba3e322752f5d98.jpg?1752359555",
+    "profileUrl": "https://www.whoreshub.com/models/malena-morgan/",
+    "attributes": {
+      "Personality": 7.5,
+      "Frame": 9.2,
+      "Face": 9.4,
+      "Chest": 9.7,
+      "Tummy": 9.8,
+      "Bottom": 8.1
+    }
+  },
+  {
+    "id": 45,
+    "name": "Abigaille Johnson",
+    "usageRate": 31,
+    "image": "https://media.themoviedb.org/t/p/w235_and_h235_face/mW5C5MLf1L3ngmGZbjgufTyFOtv.jpg",
+    "profileUrl": "https://www.tnaflix.com/amateur-porn/Abigaile-Johnson-BBC-lover/video10218131",
+    "attributes": {
+      "Personality": 8,
+      "Frame": 8.7,
+      "Face": 8.6,
+      "Chest": 8.9,
+      "Tummy": 9.6,
+      "Bottom": 8.6
+    }
+  },
+  {
+    "id": 46,
+    "name": "Alice Green",
+    "usageRate": 54,
+    "image": "https://media.themoviedb.org/t/p/w235_and_h235_face/mSNNlefeu0XKI4GKd1wE37K9HAB.jpg",
+    "profileUrl": "https://www.whoreshub.com/models/alice-green/",
+    "attributes": {
+      "Personality": 7.8,
+      "Frame": 8.6,
+      "Face": 7.9,
+      "Chest": 9.1,
+      "Tummy": 8.7,
+      "Bottom": 8.2
+    }
   }
 ];
 
